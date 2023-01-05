@@ -118,10 +118,10 @@ final class CameraViewController: UIViewController {
         cameraFeedSession = session
     }
     
-    func processPoints(_ fingerTips: [CGPoint]) {
+    func processPoints(_ points: [CGPoint]) {
         // Convert points from AVFoundation coordinates to UIKit coordinates.
         
-        let convertedPoints = fingerTips.map {
+        let convertedPoints = points.map {
             cameraView.previewLayer.layerPointConverted(fromCaptureDevicePoint: $0)
         }
         pointsProcessorHandler?(convertedPoints)
@@ -270,14 +270,13 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //        }
 //    }
     
-   
-  
+    func processBodyLandmarks(handler: VNImageRequestHandler){
+        
+        
+    }
     
-    func captureOutput(
-        _ output: AVCaptureOutput,
-        didOutput sampleBuffer: CMSampleBuffer,
-        from connection: AVCaptureConnection
-    ) {
+    
+    func processFaceLandmarks(handler: VNImageRequestHandler){
         var bodyPoints: [CGPoint] = []
         
         defer {
@@ -285,12 +284,6 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 self.processPoints(bodyPoints)
             }
         }
-        
-        let handler = VNImageRequestHandler(
-            cmSampleBuffer: sampleBuffer,
-            orientation: .up,
-            options: [:]
-        )
         do {
             // Perform VNDetectHumanHandPoseRequest
             try handler.perform([facePoseRequest])
@@ -312,18 +305,13 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     .scaledBy(x: face.boundingBox.size.width, y: face.boundingBox.size.height)
                 var recognizedPoints: [CGPoint] = []
                 if let leftEye = face.landmarks?.leftEye{
-                    
-                   
-                    //print(leftShoulder.x)
-                    
-
                     let p = leftEye.normalizedPoints[0].applying(affineTransform)
                     recognizedPoints.append(p)
                 }
                 bodyPoints = recognizedPoints
                 .map {
                     // Convert points from Vision coordinates to AVFoundation coordinates.
-
+                    //stops it all being upside down
                     CGPoint(x: $0.x, y: 1 - $0.y)
                 }
             }
@@ -331,5 +319,15 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             cameraFeedSession?.stopRunning()
             print(error.localizedDescription)
         }
+    }
+  
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,from connection: AVCaptureConnection) {
+        let handler = VNImageRequestHandler(
+            cmSampleBuffer: sampleBuffer,
+            orientation: .up,
+            options: [:]
+        )
+        processFaceLandmarks(handler: handler)
     }
 }
