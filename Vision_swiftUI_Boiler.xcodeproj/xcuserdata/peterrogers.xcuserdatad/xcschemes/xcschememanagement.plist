@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Vision_swiftUI_Boiler.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2F9C05E12940EB0100CA5CCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F9C05F12940EB0200CA5CCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F9C05FB2940EB0200CA5CCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
