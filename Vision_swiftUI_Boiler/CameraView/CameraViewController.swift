@@ -51,6 +51,11 @@ final class CameraViewController: UIViewController {
                 try setupAVSession()
                // cameraView.previewLayer.connection?.videoOrientation = .portrait
                 cameraView.previewLayer.session = cameraFeedSession
+				if #available(iOS 17.0, *) {
+					cameraView.previewLayer.connection?.videoRotationAngle = 0
+				} else {
+					// Fallback on earlier versions
+				}
                 //cameraView.previewLayer.videoGravity = .resizeAspect
                 
             }
@@ -74,7 +79,8 @@ final class CameraViewController: UIViewController {
         guard let videoDevice = AVCaptureDevice.default(
             .builtInWideAngleCamera,
             for: .video,
-            position: .front)
+			position: .front)
+		    
         else {
             throw AppError.captureSessionSetup(
                 reason: "Could not find a front facing camera."
@@ -92,7 +98,7 @@ final class CameraViewController: UIViewController {
         let session = AVCaptureSession()
         session.beginConfiguration()
         session.sessionPreset = AVCaptureSession.Preset.high
-        
+		
         
         
         // Add a video input.
@@ -129,149 +135,45 @@ final class CameraViewController: UIViewController {
 }
 
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    //  func captureOutput(
-    //    _ output: AVCaptureOutput,
-    //    didOutput sampleBuffer: CMSampleBuffer,
-    //    from connection: AVCaptureConnection
-    //  ) {
-    //    var fingerTips: [CGPoint] = []
-    //
-    //    defer {
-    //      DispatchQueue.main.sync {
-    //        self.processPoints(fingerTips)
-    //      }
-    //    }
-    //
-    //    let handler = VNImageRequestHandler(
-    //      cmSampleBuffer: sampleBuffer,
-    //      orientation: .up,
-    //      options: [:]
-    //    )
-    //    do {
-    //      // Perform VNDetectHumanHandPoseRequest
-    //      try handler.perform([handPoseRequest])
-    //
-    //      // Continue only when at least a hand was detected in the frame. We're interested in maximum of two hands.
-    //      guard
-    //        let results = handPoseRequest.results?.prefix(2),
-    //        !results.isEmpty
-    //      else {
-    //        return
-    //      }
-    //
-    //      var recognizedPoints: [VNRecognizedPoint] = []
-    //        print(recognizedPoints.description)
-    //      try results.forEach { observation in
-    //        // Get points for all fingers.
-    //        let fingers = try observation.recognizedPoints(.all)
-    //
-    //        // Look for tip points.
-    //        if let thumbTipPoint = fingers[.thumbTip] {
-    //          print(thumbTipPoint.x)
-    //          recognizedPoints.append(thumbTipPoint)
-    //        }
-    //        if let indexTipPoint = fingers[.indexTip] {
-    //          recognizedPoints.append(indexTipPoint)
-    //        }
-    //        if let middleTipPoint = fingers[.middleTip] {
-    //          recognizedPoints.append(middleTipPoint)
-    //        }
-    //        if let ringTipPoint = fingers[.ringTip] {
-    //          recognizedPoints.append(ringTipPoint)
-    //        }
-    //        if let littleTipPoint = fingers[.littleTip] {
-    //          recognizedPoints.append(littleTipPoint)
-    //        }
-    //      }
-    //
-    //      fingerTips = recognizedPoints.filter {
-    //        // Ignore low confidence points.
-    //        $0.confidence > 0.9
-    //      }
-    //      .map {
-    //        // Convert points from Vision coordinates to AVFoundation coordinates.
-    //        CGPoint(x: $0.location.x, y: 1 - $0.location.y)
-    //      }
-    //    } catch {
-    //      cameraFeedSession?.stopRunning()
-    //      print(error.localizedDescription)
-    //    }
-    //  }
-    
-//    func captureOutput(
-//        _ output: AVCaptureOutput,
-//        didOutput sampleBuffer: CMSampleBuffer,
-//        from connection: AVCaptureConnection
-//    ) {
-//        var bodyPoints: [CGPoint] = []
-//
-//        defer {
-//            DispatchQueue.main.sync {
-//                self.processPoints(bodyPoints)
-//            }
-//        }
-//
-//        let handler = VNImageRequestHandler(
-//            cmSampleBuffer: sampleBuffer,
-//            orientation: .up,
-//            options: [:]
-//        )
-//        do {
-//            // Perform VNDetectHumanHandPoseRequest
-//            try handler.perform([bodyPoseRequest])
-//
-//            // Continue only when at least a hand was detected in the frame. We're interested in maximum of two hands.
-//            guard
-//                let results = bodyPoseRequest.results?.prefix(1),
-//                !results.isEmpty
-//            else {
-//                return
-//            }
-//
-//            var recognizedPoints: [VNRecognizedPoint] = []
-//            //print(recognizedPoints.description)
-//            try results.forEach { observation in
-//                // Get points for all fingers.
-//                let bodyPoints = try observation.recognizedPoints(.face)
-//
-//                // Look for tip points.
-//                if let leftShoulder = bodyPoints[.leftEye] {
-//                    //print(leftShoulder.x)
-//                    recognizedPoints.append(leftShoulder)
-//                }
-//                if let leftEar = bodyPoints[.leftEar] {
-//                    recognizedPoints.append(leftEar)
-//                }
-//                //          if let middleTipPoint = fingers[.middleTip] {
-//                //            recognizedPoints.append(middleTipPoint)
-//                //          }
-//                //          if let ringTipPoint = fingers[.ringTip] {
-//                //            recognizedPoints.append(ringTipPoint)
-//                //          }
-//                //          if let littleTipPoint = fingers[.littleTip] {
-//                //            recognizedPoints.append(littleTipPoint)
-//                //          }
-//            }
-//            print(recognizedPoints)
-//
-//            bodyPoints = recognizedPoints.filter {
-//                // Ignore low confidence points.
-//                $0.confidence > 0.5
-//
-//            }
-//            .map {
-//                // Convert points from Vision coordinates to AVFoundation coordinates.
-//
-//                CGPoint(x: $0.location.x, y: 1 - $0.location.y)
-//            }
-//        } catch {
-//            cameraFeedSession?.stopRunning()
-//            print(error.localizedDescription)
-//        }
-//    }
+   
     
     func processBodyLandmarks(handler: VNImageRequestHandler){
-        
+		var bodyPoints: [CGPoint] = []
+		defer {
+			DispatchQueue.main.sync {
+				self.processPoints(bodyPoints)
+			}
+		}
+		do{
+			try handler.perform([bodyPoseRequest])
+			guard
+				let results = bodyPoseRequest.results?.prefix(1),
+				!results.isEmpty
+			else {
+				return
+			}
+			
+			if let body = results.first  {
+//				let affineTransform = CGAffineTransform(translationX: body.boundingBox.origin.x, y: body.boundingBox.origin.y)
+//					.scaledBy(x: body.boundingBox.size.width, y: body.boundingBox.size.height)
+				var recognizedPoints: [CGPoint] = []
+				if let leftWrist = try? body.recognizedPoint(.leftWrist){
+					let p = CGPoint(x: leftWrist.x, y: leftWrist.y)
+					recognizedPoints.append(p)
+				}
+					
+				bodyPoints = recognizedPoints
+				.map {
+					// Convert points from Vision coordinates to AVFoundation coordinates.
+					//stops it all being upside down
+					CGPoint(x: $0.x, y: 1 - $0.y)
+				}
+				}
+			
+		}catch{
+			print(error)
+		}
+		
         
     }
     
@@ -308,6 +210,10 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     let p = leftEye.normalizedPoints[0].applying(affineTransform)
                     recognizedPoints.append(p)
                 }
+				if let rightEye = face.landmarks?.rightEye{
+					let p = rightEye.normalizedPoints[0].applying(affineTransform)
+					recognizedPoints.append(p)
+				}
                 bodyPoints = recognizedPoints
                 .map {
                     // Convert points from Vision coordinates to AVFoundation coordinates.
@@ -325,9 +231,10 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,from connection: AVCaptureConnection) {
         let handler = VNImageRequestHandler(
             cmSampleBuffer: sampleBuffer,
-            orientation: .up,
+			orientation: .up,
             options: [:]
         )
-        processFaceLandmarks(handler: handler)
+        //processFaceLandmarks(handler: handler)
+		processBodyLandmarks(handler: handler)
     }
 }
