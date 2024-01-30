@@ -13,7 +13,7 @@ import Vision
 final class CameraViewController: UIViewController {
     
     private var cameraView: CameraPreview { view as! CameraPreview }
-    
+	
     private let videoDataOutputQueue = DispatchQueue(
         label: "CameraFeedOutput",
         qos: .userInteractive
@@ -157,8 +157,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //				let affineTransform = CGAffineTransform(translationX: body.boundingBox.origin.x, y: body.boundingBox.origin.y)
 //					.scaledBy(x: body.boundingBox.size.width, y: body.boundingBox.size.height)
 				var recognizedPoints: [CGPoint] = []
-				if let leftWrist = try? body.recognizedPoint(.leftWrist){
-					let p = CGPoint(x: leftWrist.x, y: leftWrist.y)
+				if let neck = try? body.recognizedPoint(.neck){
+					let p = CGPoint(x: neck.x, y: neck.y)
 					recognizedPoints.append(p)
 				}
 					
@@ -168,6 +168,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 					//stops it all being upside down
 					CGPoint(x: $0.x, y: 1 - $0.y)
 				}
+			
 				}
 			
 		}catch{

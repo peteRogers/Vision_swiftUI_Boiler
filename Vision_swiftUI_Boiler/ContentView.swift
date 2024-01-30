@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var overlayPoints: [CGPoint] = []
+   // @State private var overlayPoints: [CGPoint] = []
+	@ObservedObject var ac = AudioController()
     var body: some View {
         ZStack{
             CameraView{
-                overlayPoints = $0
+				ac.visionPoints = $0
                 
             }.overlay(
-                PointsOverlay(with: overlayPoints)
+				PointsOverlay(with: ac.currentPoint)
                     .foregroundColor(.red)
               )
               .edgesIgnoringSafeArea(.all)
+			
         }
     }
 }
@@ -28,3 +30,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+

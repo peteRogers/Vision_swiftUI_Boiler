@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F5E477C2B693ACE002C3E59 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5E477B2B693ACE002C3E59 /* AudioKit */; };
+		2F5E477E2B693F24002C3E59 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E477D2B693F24002C3E59 /* AudioController.swift */; };
+		2F5E47802B6941D0002C3E59 /* A0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2F5E477F2B6941D0002C3E59 /* A0.wav */; };
+		2F5E47842B6943AB002C3E59 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */; };
 		2F9C05E62940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C05E52940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift */; };
 		2F9C05E82940EB0100CA5CCC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C05E72940EB0100CA5CCC /* ContentView.swift */; };
 		2F9C05EA2940EB0200CA5CCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9C05E92940EB0200CA5CCC /* Assets.xcassets */; };
@@ -49,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F5E477D2B693F24002C3E59 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		2F5E477F2B6941D0002C3E59 /* A0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A0.wav; sourceTree = "<group>"; };
+		2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		2F9C05E22940EB0100CA5CCC /* Vision_swiftUI_Boiler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vision_swiftUI_Boiler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9C05E52940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision_swiftUI_BoilerApp.swift; sourceTree = "<group>"; };
 		2F9C05E72940EB0100CA5CCC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5E477C2B693ACE002C3E59 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,9 +126,12 @@
 				2FB9101D2965C5480062DEA4 /* Vision_swiftUI_Boiler.entitlements */,
 				2F9C06172940F47300CA5CCC /* CameraView */,
 				2F9C05E52940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift */,
+				2F5E477D2B693F24002C3E59 /* AudioController.swift */,
 				2F9C05E72940EB0100CA5CCC /* ContentView.swift */,
 				2F9C06242943509E00CA5CCC /* PointsOverlay.swift */,
+				2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */,
 				2F9C05E92940EB0200CA5CCC /* Assets.xcassets */,
+				2F5E477F2B6941D0002C3E59 /* A0.wav */,
 				2F9C06132940EB3C00CA5CCC /* AppError.swift */,
 				2F9C05EB2940EB0200CA5CCC /* Preview Content */,
 			);
@@ -178,6 +189,9 @@
 			dependencies = (
 			);
 			name = Vision_swiftUI_Boiler;
+			packageProductDependencies = (
+				2F5E477B2B693ACE002C3E59 /* AudioKit */,
+			);
 			productName = Vision_swiftUI_Boiler;
 			productReference = 2F9C05E22940EB0100CA5CCC /* Vision_swiftUI_Boiler.app */;
 			productType = "com.apple.product-type.application";
@@ -226,7 +240,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					2F9C05E12940EB0100CA5CCC = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -250,6 +264,9 @@
 				Base,
 			);
 			mainGroup = 2F9C05D92940EB0100CA5CCC;
+			packageReferences = (
+				2F5E477A2B693ACE002C3E59 /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			productRefGroup = 2F9C05E32940EB0100CA5CCC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F9C05ED2940EB0200CA5CCC /* Preview Assets.xcassets in Resources */,
+				2F5E47802B6941D0002C3E59 /* A0.wav in Resources */,
 				2F9C05EA2940EB0200CA5CCC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,8 +314,10 @@
 				2F9C061B2940F49600CA5CCC /* CameraPreview.swift in Sources */,
 				2F9C05E62940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift in Sources */,
 				2F9C061E2940F49600CA5CCC /* CameraView.swift in Sources */,
+				2F5E47842B6943AB002C3E59 /* RepeatingTimer.swift in Sources */,
 				2F9C06142940EB3C00CA5CCC /* AppError.swift in Sources */,
 				2F9C06212940F49600CA5CCC /* CameraViewController.swift in Sources */,
+				2F5E477E2B693F24002C3E59 /* AudioController.swift in Sources */,
 				2F9C06252943509E00CA5CCC /* PointsOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -381,6 +402,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -409,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -441,6 +464,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -641,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2F5E477A2B693ACE002C3E59 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2F5E477B2B693ACE002C3E59 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F5E477A2B693ACE002C3E59 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2F9C05DA2940EB0100CA5CCC /* Project object */;
 }
