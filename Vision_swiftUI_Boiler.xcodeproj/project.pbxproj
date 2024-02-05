@@ -11,6 +11,8 @@
 		2F5E477E2B693F24002C3E59 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E477D2B693F24002C3E59 /* AudioController.swift */; };
 		2F5E47802B6941D0002C3E59 /* A0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2F5E477F2B6941D0002C3E59 /* A0.wav */; };
 		2F5E47842B6943AB002C3E59 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */; };
+		2F5E478B2B6A6E50002C3E59 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5E478A2B6A6E50002C3E59 /* SoundpipeAudioKit */; };
+		2F5E478D2B6A731B002C3E59 /* drums.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2F5E478C2B6A731B002C3E59 /* drums.wav */; };
 		2F9C05E62940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C05E52940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift */; };
 		2F9C05E82940EB0100CA5CCC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C05E72940EB0100CA5CCC /* ContentView.swift */; };
 		2F9C05EA2940EB0200CA5CCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9C05E92940EB0200CA5CCC /* Assets.xcassets */; };
@@ -33,6 +35,7 @@
 		2F9C06252943509E00CA5CCC /* PointsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C06242943509E00CA5CCC /* PointsOverlay.swift */; };
 		2F9C06262943509E00CA5CCC /* PointsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C06242943509E00CA5CCC /* PointsOverlay.swift */; };
 		2F9C06272943509E00CA5CCC /* PointsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C06242943509E00CA5CCC /* PointsOverlay.swift */; };
+		2FA02C042B71281D008BC355 /* DunneAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FA02C032B71281D008BC355 /* DunneAudioKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,7 @@
 		2F5E477D2B693F24002C3E59 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		2F5E477F2B6941D0002C3E59 /* A0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A0.wav; sourceTree = "<group>"; };
 		2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
+		2F5E478C2B6A731B002C3E59 /* drums.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drums.wav; sourceTree = "<group>"; };
 		2F9C05E22940EB0100CA5CCC /* Vision_swiftUI_Boiler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vision_swiftUI_Boiler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9C05E52940EB0100CA5CCC /* Vision_swiftUI_BoilerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision_swiftUI_BoilerApp.swift; sourceTree = "<group>"; };
 		2F9C05E72940EB0100CA5CCC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,7 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5E478B2B6A6E50002C3E59 /* SoundpipeAudioKit in Frameworks */,
 				2F5E477C2B693ACE002C3E59 /* AudioKit in Frameworks */,
+				2FA02C042B71281D008BC355 /* DunneAudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +135,7 @@
 				2F5E477D2B693F24002C3E59 /* AudioController.swift */,
 				2F9C05E72940EB0100CA5CCC /* ContentView.swift */,
 				2F9C06242943509E00CA5CCC /* PointsOverlay.swift */,
+				2F5E478C2B6A731B002C3E59 /* drums.wav */,
 				2F5E47832B6943AB002C3E59 /* RepeatingTimer.swift */,
 				2F9C05E92940EB0200CA5CCC /* Assets.xcassets */,
 				2F5E477F2B6941D0002C3E59 /* A0.wav */,
@@ -191,6 +198,8 @@
 			name = Vision_swiftUI_Boiler;
 			packageProductDependencies = (
 				2F5E477B2B693ACE002C3E59 /* AudioKit */,
+				2F5E478A2B6A6E50002C3E59 /* SoundpipeAudioKit */,
+				2FA02C032B71281D008BC355 /* DunneAudioKit */,
 			);
 			productName = Vision_swiftUI_Boiler;
 			productReference = 2F9C05E22940EB0100CA5CCC /* Vision_swiftUI_Boiler.app */;
@@ -266,6 +275,8 @@
 			mainGroup = 2F9C05D92940EB0100CA5CCC;
 			packageReferences = (
 				2F5E477A2B693ACE002C3E59 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				2F5E47892B6A6E50002C3E59 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				2FA02C022B71281D008BC355 /* XCRemoteSwiftPackageReference "DunneAudioKit" */,
 			);
 			productRefGroup = 2F9C05E32940EB0100CA5CCC /* Products */;
 			projectDirPath = "";
@@ -283,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5E478D2B6A731B002C3E59 /* drums.wav in Resources */,
 				2F9C05ED2940EB0200CA5CCC /* Preview Assets.xcassets in Resources */,
 				2F5E47802B6941D0002C3E59 /* A0.wav in Resources */,
 				2F9C05EA2940EB0200CA5CCC /* Assets.xcassets in Resources */,
@@ -675,6 +687,22 @@
 				minimumVersion = 5.6.3;
 			};
 		};
+		2F5E47892B6A6E50002C3E59 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
+		2FA02C022B71281D008BC355 /* XCRemoteSwiftPackageReference "DunneAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/DunneAudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -682,6 +710,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F5E477A2B693ACE002C3E59 /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
+		};
+		2F5E478A2B6A6E50002C3E59 /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F5E47892B6A6E50002C3E59 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+		2FA02C032B71281D008BC355 /* DunneAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FA02C022B71281D008BC355 /* XCRemoteSwiftPackageReference "DunneAudioKit" */;
+			productName = DunneAudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

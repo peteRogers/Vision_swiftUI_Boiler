@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct CameraView: UIViewControllerRepresentable {
-  var pointsProcessorHandler: (([CGPoint]) -> Void)?
+  var pointsProcessorHandler: (([MyJoint]) -> Void)?
 
   func makeUIViewController(context: Context) -> CameraViewController {
     let cvc = CameraViewController()
